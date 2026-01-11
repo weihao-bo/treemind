@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="TreeMind: A Comprehensive Benchmark for Evaluating Multimodal Large Language Models in UAV-Based Forestry Scene Understanding">
+  <meta name="keywords" content="TreeMind, UAV, Forestry, Remote Sensing, MLLM, Multimodal Large Language Model, Benchmark, Forest Monitoring">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TreeMind: Evaluating MLLMs for UAV-Based Forestry Scene Understanding</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" type="image/png" href="./assets/images/treemind/fig1.webp">
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-left">
+            <div class="title-with-logo">
+              <h1 class="title is-1 publication-title">
+                <span class="treemind">TreeMind</span>: Evaluating Multimodal Large Language Models for UAV-Based Forestry Scene Understanding
+              </h1>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Weichao Wu<sup>1</sup>,</span>
+              <span class="author-block">Xijian Fan<sup>1</sup>,</span>
+              <span class="author-block">Shichao Jin<sup>2</sup>,</span>
+              <span class="author-block">Weihao Bo<sup>3,*</sup>,</span>
+              <span class="author-block">Lin Cao<sup>1,&dagger;</sup></span>
+            </div>
+
+            <div class="is-size-6 publication-authors affiliations">
+              <span class="author-block"><sup>1</sup>Nanjing Forestry University</span>
+              <span class="author-block"><sup>2</sup>Beijing Forestry University</span>
+              <span class="author-block"><sup>3</sup>Nanjing University of Science and Technology</span>
+            </div>
+
+            <div class="is-size-7 publication-authors" style="margin-top: 3px;">
+              <span class="author-block"><sup>*</sup>Project Leader &nbsp; <sup>&dagger;</sup>Corresponding Author</span>
+            </div>
+
+            <div class="column has-text-left" style="padding-left: 0;">
+              <div class="publication-links">
+                <!-- Code Link -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-huggingface">
+                    <span class="icon"><i class="fas fa-database"></i></span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Teaser Figure -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure class="image teaser-image">
+        <img src="./assets/images/treemind/pipeline.webp" alt="TreeMind Benchmark Overview">
+      </figure>
+      <h2 class="subtitle has-text-left">
+        <strong>Overview of TreeMind.</strong> (a) Visual tasks and sample images from the datasets used (including both public and private datasets); (b) Geographic locations of all datasets; (c) Percentage of different tasks; (d) Distribution of all task types.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Box -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="stats-box">
+      <div class="stat-item">
+        <span class="stat-number">27,719</span>
+        <span class="stat-label">UAV Images</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">36,521</span>
+        <span class="stat-label">VQA Pairs</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">12</span>
+        <span class="stat-label">Task Types</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">22</span>
+        <span class="stat-label">Datasets</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">21</span>
+        <span class="stat-label">MLLMs Evaluated</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Task Overview with Examples -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">12 Forestry Tasks Across 3 Spatial Granularities</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            TreeMind organizes 12 representative forestry tasks along a progressive visual cognition hierarchy spanning <strong>Image-level</strong>, <strong>Region-level</strong>, and <strong>Pixel-level</strong> spatial granularities. This design enables comprehensive evaluation of MLLMs from global semantic interpretation to instance-centric perception and pixel-accurate geometric delineation.
+          </p>
+        </div>
+
+        <figure class="image">
+          <img src="./assets/images/treemind/task2.webp" alt="TreeMind Task Taxonomy with Examples">
+          <figcaption class="has-text-centered is-size-7" style="margin-top: 0.5rem;">
+            Hierarchical task taxonomy with representative examples: Image-level tasks (T1-T7) for global semantics, Region-level tasks (T8-T10) for instance perception, and Pixel-level tasks (T11-T12) for geometric precision.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The integration of Unmanned Aerial Vehicles (UAVs) into forestry management has revolutionized data acquisition, yet the interpretation of such high-resolution imagery remains a bottleneck. Traditional analytic pipelines, fragmented into task-specific deep learning models, struggle to scale across the diverse semantic and structural complexities of forest ecosystems. <strong>Multimodal Large Language Models (MLLMs)</strong> promise a paradigm shift, offering a unified, prompt-driven interface that couples visual perception with expert-level reasoning.
+          </p>
+          <p>
+            However, their applicability to the domain-specific challenges of forestry—such as dense object counting, fine-grained phenological discrimination, and canopy stratification—remains largely unexplored. In this article, we introduce <strong>TreeMind</strong>, a comprehensive benchmark designed to evaluate MLLMs across three spatial granularities: <em>Image</em>, <em>Region</em>, and <em>Pixel</em> levels.
+          </p>
+          <p>
+            Covering 12 distinct forestry tasks and aggregating data from diverse global biomes, TreeMind serves as a rigorous diagnostic tool. We evaluate 21 state-of-the-art MLLMs, including GPT-4o and Qwen-VL, under a consistent protocol. Our analysis reveals a critical dichotomy: while current models excel at holistic semantic interpretation and basic visual question answering, they exhibit <strong>significant fragility in spatially grounded tasks</strong> essential for inventory and monitoring, such as precise crown delineation and dense counting.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Method Overview -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Benchmark Construction Pipeline</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <strong>TreeMind</strong> is developed as a comprehensive, multimodal, and multi-task benchmark for the systematic evaluation of MLLMs in UAV-based forestry monitoring. It supports a wide spectrum of forestry interpretation tasks, ranging from individual-tree analysis to forest stand-level understanding. The construction follows a structured four-stage pipeline:
+          </p>
+        </div>
+
+        <figure class="image">
+          <img src="./assets/images/treemind/pipeline.webp" alt="TreeMind Construction Pipeline">
+        </figure>
+
+        <div class="content has-text-justified method-details">
+          <h3 class="title is-4">Key Features</h3>
+          <ul>
+            <li><strong>Diverse Data Sources:</strong> Aggregated from 18 publicly available datasets and 2 private forestry repositories, covering diverse forest types, geographic regions, and acquisition conditions.</li>
+            <li><strong>Hierarchical Task Taxonomy:</strong> Tasks organized across three spatial granularities (Image, Region, Pixel) to probe distinct facets of model capability.</li>
+            <li><strong>Prompt-Driven Evaluation:</strong> Hybrid instruction generation combining rule-based templates with LLM rewriting for semantic precision and linguistic diversity.</li>
+            <li><strong>Comprehensive MLLM Evaluation:</strong> 21 state-of-the-art models evaluated under a task-agnostic protocol without task-specific fine-tuning.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Task Taxonomy -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Hierarchical Task Taxonomy</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            TreeMind adopts a spatially stratified task taxonomy that progressively increases the required level of visual grounding, moving from global semantic interpretation to instance-centric perception and pixel-accurate geometric delineation.
+          </p>
+        </div>
+
+        <figure class="image" style="max-width: 60%; margin: 0 auto;">
+          <img src="./assets/images/treemind/task_taxonomy.webp" alt="TreeMind Task Taxonomy">
+        </figure>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Image-Level Tasks (Global Semantics)</h3>
+          <ul>
+            <li><strong>Task 1 - Tree Species Classification:</strong> Predict the dominant species or stand type for a given image patch.</li>
+            <li><strong>Task 2 - Forest Visual QA:</strong> Answer natural-language questions about the overall forest scene.</li>
+            <li><strong>Task 3 - Tree Counting:</strong> Estimate the number of trees within the image under high instance density.</li>
+            <li><strong>Task 4 - Individual Tree Detection:</strong> Output bounding boxes for visible individual trees.</li>
+            <li><strong>Task 5 - Tree Localization:</strong> Predict point locations (treetops or crown centers).</li>
+            <li><strong>Task 6 & 7 - Multi-Task:</strong> Joint localization/detection and counting.</li>
+          </ul>
+
+          <h3 class="title is-4">Region-Level Tasks (Instance Perception)</h3>
+          <ul>
+            <li><strong>Task 8 - Individual Tree Species Classification:</strong> Predict species for a given individual tree instance.</li>
+            <li><strong>Task 9 - Forest Visual Grounding:</strong> Localize the region corresponding to a language query (e.g., "the tallest tree").</li>
+            <li><strong>Task 10 - Tree Status Perception and Reasoning:</strong> Infer tree condition and answer questions requiring contextual reasoning.</li>
+          </ul>
+
+          <h3 class="title is-4">Pixel-Level Tasks (Geometric Precision)</h3>
+          <ul>
+            <li><strong>Task 11 - Individual Tree Crown Delineation:</strong> Predict precise crown boundaries for individual trees.</li>
+            <li><strong>Task 12 - Forest Canopy Mapping:</strong> Produce pixel-level canopy maps for stand-scale analysis.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Benchmark Results (Task 1-10)</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            We evaluate 21 representative MLLMs, including closed-source models (Gemini-3-Pro, GPT-5.2) and open-source models of various scales. The fine-tuned Qwen3-VL-8B-Instruct shows significant improvements across all tasks.
+          </p>
+        </div>
+
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable is-fullwidth results-table">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>T1 Acc</th>
+                <th>T2 Acc</th>
+                <th>T3 MAE</th>
+                <th>T4 AP50</th>
+                <th>T5 Match</th>
+                <th>T8 Acc</th>
+                <th>T9 AP50</th>
+                <th>T10 AP50</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Open-Source MLLMs -->
+              <tr class="is-subheader">
+                <td colspan="9"><i>Open-Source MLLMs</i></td>
+              </tr>
+              <tr>
+                <td>Gemma-3-12B</td>
+                <td>0.24</td>
+                <td>0.83</td>
+                <td>37.31</td>
+                <td>0.01</td>
+                <td>0.12</td>
+                <td>0.29</td>
+                <td>0.01</td>
+                <td>0.02</td>
+              </tr>
+              <tr>
+                <td>Ovis2.5-9B</td>
+                <td>0.22</td>
+                <td>0.83</td>
+                <td>58.57</td>
+                <td>0.10</td>
+                <td>0.05</td>
+                <td>0.26</td>
+                <td>0.22</td>
+                <td>0.04</td>
+              </tr>
+              <tr>
+                <td>MiniCPM-V 4.5</td>
+                <td>0.24</td>
+                <td>0.47</td>
+                <td>59.00</td>
+                <td>0.04</td>
+                <td>0.06</td>
+                <td>0.21</td>
+                <td>0.07</td>
+                <td>0.02</td>
+              </tr>
+              <tr>
+                <td>InternVL3.5-241B</td>
+                <td>0.23</td>
+                <td>0.81</td>
+                <td>50.20</td>
+                <td>0.18</td>
+                <td>0.15</td>
+                <td>0.45</td>
+                <td>0.32</td>
+                <td>0.23</td>
+              </tr>
+              <tr>
+                <td>Kimi-VL-A3B</td>
+                <td>0.31</td>
+                <td>0.59</td>
+                <td>59.07</td>
+                <td>0.03</td>
+                <td>0.13</td>
+                <td>0.30</td>
+                <td>0.12</td>
+                <td>0.01</td>
+              </tr>
+              <tr>
+                <td>Step3</td>
+                <td>0.31</td>
+                <td>0.79</td>
+                <td>57.07</td>
+                <td>0.06</td>
+                <td>0.27</td>
+                <td>0.33</td>
+                <td>0.03</td>
+                <td>0.01</td>
+              </tr>
+              <tr>
+                <td>GLM-4.6V</td>
+                <td>0.29</td>
+                <td>0.86</td>
+                <td>54.13</td>
+                <td>0.25</td>
+                <td>0.12</td>
+                <td>0.31</td>
+                <td>0.37</td>
+                <td>0.14</td>
+              </tr>
+              <tr>
+                <td>Qwen3-VL-8B</td>
+                <td>0.24</td>
+                <td>0.85</td>
+                <td>41.12</td>
+                <td>0.31</td>
+                <td>0.48</td>
+                <td>0.37</td>
+                <td>0.46</td>
+                <td>0.07</td>
+              </tr>
+              <tr>
+                <td>Qwen3-VL-235B-Instruct</td>
+                <td>0.27</td>
+                <td>0.84</td>
+                <td>43.19</td>
+                <td>0.35</td>
+                <td>0.49</td>
+                <td>0.36</td>
+                <td>0.48</td>
+                <td>0.13</td>
+              </tr>
+              <tr>
+                <td>Qwen3-VL-235B-Thinking</td>
+                <td>0.18</td>
+                <td>0.82</td>
+                <td>49.15</td>
+                <td>0.44</td>
+                <td>0.65</td>
+                <td>0.39</td>
+                <td>0.55</td>
+                <td><strong>0.37</strong></td>
+              </tr>
+
+              <!-- Closed-Source MLLMs -->
+              <tr class="is-subheader">
+                <td colspan="9"><i>Closed-Source MLLMs</i></td>
+              </tr>
+              <tr>
+                <td>Gemini-3-Pro</td>
+                <td>0.25</td>
+                <td>0.86</td>
+                <td>43.62</td>
+                <td>0.34</td>
+                <td>0.21</td>
+                <td>0.38</td>
+                <td>0.22</td>
+                <td>0.14</td>
+              </tr>
+              <tr>
+                <td>GPT-5.2</td>
+                <td>0.26</td>
+                <td>0.86</td>
+                <td>31.76</td>
+                <td>0.24</td>
+                <td>0.24</td>
+                <td>0.32</td>
+                <td>0.12</td>
+                <td>0.13</td>
+              </tr>
+
+              <!-- Fine-tuned -->
+              <tr class="is-subheader">
+                <td colspan="9"><i>Fine-tuned Model</i></td>
+              </tr>
+              <tr class="is-highlighted" style="background-color:#dcfce7 !important;">
+                <td><strong>Qwen3-VL-8B (FT)</strong></td>
+                <td><strong>0.66</strong></td>
+                <td><strong>0.91</strong></td>
+                <td><strong>17.73</strong></td>
+                <td><strong>0.54</strong></td>
+                <td><strong>0.68</strong></td>
+                <td><strong>0.54</strong></td>
+                <td><strong>0.76</strong></td>
+                <td>0.27</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-justified key-findings">
+          <h3 class="title is-4">Key Findings</h3>
+          <ul>
+            <li><strong>Strong VQA Performance:</strong> Current MLLMs excel at holistic semantic interpretation and basic visual question answering (Task 2 achieves 0.86 accuracy).</li>
+            <li><strong>Weak Spatial Grounding:</strong> Models exhibit significant fragility in spatially grounded tasks such as tree detection (AP50) and localization (Match50), with most models below 0.50.</li>
+            <li><strong>Fine-tuning Gains:</strong> Domain-specific instruction tuning dramatically improves performance, with the fine-tuned Qwen3-VL-8B achieving +0.42 accuracy on species classification and +0.30 AP50 on visual grounding.</li>
+            <li><strong>Counting Challenges:</strong> Dense object counting remains difficult, with MAE ranging from 31-59 across models, highlighting the need for improved numeracy in forest scenes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Pixel-level Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Pixel-level Task Results (Task 11-12)</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Pixel-level tasks constitute the most stringent tier of TreeMind, requiring dense, geometry-aware prediction. Even with strong segmentation frameworks combining grounding and SAM, models struggle to consistently separate individual tree instances and accurately recover their boundaries under dense canopies with high visual similarity and frequent occlusion.
+          </p>
+        </div>
+
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable results-table" style="max-width: 800px; margin: 0 auto;">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Task 11<br>MaskAP50</th>
+                <th>Task 12<br>mIoU</th>
+                <th>IoU (crowns)</th>
+                <th>IoU (soil)</th>
+                <th>IoU (road)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="is-subheader">
+                <td colspan="6"><i>Open-source models</i></td>
+              </tr>
+              <tr>
+                <td>Grounded-SAM</td>
+                <td><strong>0.23</strong></td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr class="is-highlighted">
+                <td>PixelLM-1.3B</td>
+                <td>—</td>
+                <td><strong>0.51</strong></td>
+                <td><strong>0.57</strong></td>
+                <td><strong>0.75</strong></td>
+                <td>0.21</td>
+              </tr>
+              <tr>
+                <td>HyperSeg-3B</td>
+                <td>—</td>
+                <td>0.27</td>
+                <td>0.25</td>
+                <td>0.34</td>
+                <td><strong>0.23</strong></td>
+              </tr>
+              <tr>
+                <td>LISA-7B</td>
+                <td>—</td>
+                <td>0.39</td>
+                <td>0.28</td>
+                <td>0.66</td>
+                <td><strong>0.23</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-justified key-findings" style="margin-top: 1.5rem;">
+          <h3 class="title is-4">Key Observations</h3>
+          <ul>
+            <li><strong>Instance Segmentation Bottleneck:</strong> Crown instance segmentation (Task 11) remains extremely challenging with MaskAP50 of only 0.23, indicating that fine boundary delineation is a key bottleneck.</li>
+            <li><strong>Category Dependence:</strong> Models perform better on large regions with uniform textures (e.g., soil with IoU 0.75) while struggling with thin structures like roads (IoU 0.21-0.23).</li>
+            <li><strong>Domain Gap:</strong> Visual representations learned from generic data do not directly transfer to forestry remote sensing tasks.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Radar Chart Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Species Classification Performance</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            The radar chart visualizes the classification performance of different MLLMs across 20 tree species categories (S1-S20) in the TreeMind benchmark. Different methods exhibit complementary strengths across species, but for several categories such as <em>Quercus robur</em> (S18), <em>Quercus rubra</em> (S19), and <em>Tilia</em> spp. (S20), all methods perform poorly, indicating higher fine-grained discriminative difficulty and stronger inter-class confusion. After fine-tuning on the TreeMind dataset, Qwen3-VL-8B-Instruct achieves notable improvement in generalization for tree species classification.
+          </p>
+        </div>
+
+        <figure class="image" style="max-width: 75%; margin: 0 auto;">
+          <img src="./assets/images/treemind/radar_chart_with_codes.webp" alt="Radar Chart Performance Comparison">
+          <figcaption class="has-text-centered is-size-7" style="margin-top: 0.5rem;">
+            S1: Abies alba; S2: Acer pseudoplatanus; S3: Alnus; S4: Betula; S5: Cleared area; S6: Fagus sylvatica; S7: Fraxinus excelsior; S8: Larix decidua; S9: Larix kaempferi; S10: Picea abies; S11: Pinus nigra; S12: Pinus strobus; S13: Pinus sylvestris; S14: Populus; S15: Prunus; S16: Pseudotsuga menziesii; S17: Quercus petraea; S18: Quercus robur; S19: Quercus rubra; S20: Tilia.
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Density Analysis -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Performance vs. Tree Density Analysis</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            We analyze how model performance degrades with increasing tree density, a critical factor in real-world forestry applications. The analysis reveals that detection and counting performance drops significantly in dense canopy conditions.
+          </p>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <figure class="image">
+              <img src="./assets/images/treemind/density_ap50_comparison.webp" alt="AP50 vs Density">
+              <figcaption class="has-text-centered is-size-7">Detection AP50 vs. Tree Density</figcaption>
+            </figure>
+          </div>
+          <div class="column is-4">
+            <figure class="image">
+              <img src="./assets/images/treemind/density_comparison_location.webp" alt="Localization vs Density">
+              <figcaption class="has-text-centered is-size-7">Localization Match vs. Density</figcaption>
+            </figure>
+          </div>
+          <div class="column is-4">
+            <figure class="image">
+              <img src="./assets/images/treemind/density_performance_comparison.webp" alt="Overall Performance vs Density">
+              <figcaption class="has-text-centered is-size-7">Overall Performance vs. Density</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="content has-text-justified key-findings">
+          <h3 class="title is-4">Density Impact Analysis</h3>
+          <ul>
+            <li><strong>Detection Degradation:</strong> AP50 scores drop by 30-50% when moving from sparse to dense forest stands.</li>
+            <li><strong>Localization Challenges:</strong> Point-based localization becomes increasingly difficult with crown overlap and occlusion.</li>
+            <li><strong>Fine-tuning Robustness:</strong> The fine-tuned model maintains relatively stable performance across density levels compared to zero-shot baselines.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Visualization Analytics -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Visualization Analytics</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Qualitative results on pixel-level tasks (Task 11: Instance Segmentation and Task 12: Semantic Segmentation). Each row shows <em>Raw</em> (input image), <em>GT</em> (ground truth), and <em>P</em> (model prediction).
+          </p>
+        </div>
+
+        <figure class="image">
+          <img src="./assets/images/treemind/sem_datasets.webp" alt="Pixel-level Task Visualization">
+          <figcaption class="has-text-centered is-size-7" style="margin-top: 0.5rem;">
+            (a-b) Instance segmentation results of <strong>Grounded-SAM</strong>: performs reasonably well when crowns are separated (a), but merges multiple crowns under heavy overlap (b).
+            (c-d) Semantic crown segmentation results of <strong>PixelLM-7B</strong>: yields accurate masks in clean scenes (c), while struggling with complex backgrounds (d).
+          </figcaption>
+        </figure>
+
+        <div class="content has-text-justified key-findings" style="margin-top: 1.5rem;">
+          <h3 class="title is-4">Analysis</h3>
+          <ul>
+            <li><strong>Instance Segmentation:</strong> Grounded-SAM can produce reasonable instance masks when crowns are spatially separated, but struggles to disentangle adjacent crowns in heavily overlapped scenes.</li>
+            <li><strong>Semantic Segmentation:</strong> PixelLM-7B achieves high-quality masks in clean cases with clear crown boundaries, but has difficulty separating crowns from visually similar background regions in complex scenes.</li>
+            <li><strong>Key Challenges:</strong> Background complexity and low foreground-background contrast remain critical challenges for robust crown segmentation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Qualitative Comparison -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Qualitative Comparison: Fine-tuning Effect</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Qualitative comparison between <strong>Qwen3-VL-8B-Instruct</strong> (zero-shot) and <strong>Qwen3-VL-8B-Instruct-FT</strong> (fine-tuned on TreeMind) across four representative tasks. Each row shows ground truth, zero-shot predictions, and fine-tuned predictions.
+          </p>
+        </div>
+
+        <figure class="image">
+          <img src="./assets/images/treemind/dataset5.webp" alt="Qualitative Comparison between Zero-shot and Fine-tuned Models">
+          <figcaption class="has-text-centered is-size-7" style="margin-top: 0.5rem;">
+            (a-b) Object detection, (c-d) Crown localization, (e) Referring localization (localizing the crown with the largest canopy area), and (f) Pest & disease detection. <span style="color:#22c55e;">Green</span> denotes correct predictions, <span style="color:#ef4444;">Red</span> denotes incorrect predictions.
+          </figcaption>
+        </figure>
+
+        <div class="content has-text-justified key-findings" style="margin-top: 1.5rem;">
+          <h3 class="title is-4">Key Observations</h3>
+          <ul>
+            <li><strong>Detection Improvement:</strong> Fine-tuning significantly reduces false positives and missed detections, especially in dense canopy regions.</li>
+            <li><strong>Localization Precision:</strong> The fine-tuned model produces more accurate point predictions with fewer outliers.</li>
+            <li><strong>Reasoning Enhancement:</strong> For referring localization tasks requiring spatial reasoning (e.g., "find the largest crown"), fine-tuning dramatically improves the model's ability to correctly interpret and execute the instruction.</li>
+            <li><strong>Domain Adaptation:</strong> Fine-tuning bridges the domain gap between general visual understanding and forestry-specific perception.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dataset Sources -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Data Sources</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            TreeMind aggregates UAV imagery from 18 public datasets and 4 private forestry repositories, covering diverse forest types, geographic regions, canopy structures, and acquisition conditions. The datasets span diverse forest stand structures, canopy densities, phenological stages, and illumination conditions.
+          </p>
+        </div>
+
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable is-fullwidth results-table">
+            <thead>
+              <tr>
+                <th>Dataset</th>
+                <th>Image Resolution</th>
+                <th>Dataset</th>
+                <th>Image Resolution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="is-subheader">
+                <td colspan="4"><i>Public Datasets</i></td>
+              </tr>
+              <tr>
+                <td>Forest Damage LC</td>
+                <td>1500x1500</td>
+                <td>PDT Dataset</td>
+                <td>640x640</td>
+              </tr>
+              <tr>
+                <td>Tree AI</td>
+                <td>640x640</td>
+                <td>Oil Palm UAV</td>
+                <td>1024x1024</td>
+              </tr>
+              <tr>
+                <td>OliveTreeCrownsDB</td>
+                <td>912x608</td>
+                <td>NeonTreeEvaluation</td>
+                <td>400x400</td>
+              </tr>
+              <tr>
+                <td>BAMFORESTS</td>
+                <td>2048x2048</td>
+                <td>TreeSatAI</td>
+                <td>304x304</td>
+              </tr>
+              <tr>
+                <td>Urban Tree Detection</td>
+                <td>640x640</td>
+                <td>Aerial Palm Trees</td>
+                <td>4864x3648</td>
+              </tr>
+              <tr>
+                <td>SPREAD</td>
+                <td>960x540</td>
+                <td>Tree Crown Urban/Rural</td>
+                <td>600x600</td>
+              </tr>
+              <tr>
+                <td>Forest-Inspection</td>
+                <td>5280x3956</td>
+                <td>TreeFormer</td>
+                <td>1024x1024</td>
+              </tr>
+              <tr>
+                <td>Tonga Trees</td>
+                <td>1000x1000</td>
+                <td>Individual Urban Tree Crown</td>
+                <td>512x512</td>
+              </tr>
+              <tr class="is-subheader">
+                <td colspan="4"><i>Private Datasets</i></td>
+              </tr>
+              <tr>
+                <td>Pinus elliottii Dataset</td>
+                <td>500x542</td>
+                <td>Rubber Tree Dataset</td>
+                <td>500x500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contributions -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Contributions</h2>
+
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Comprehensive Benchmark:</strong> We introduce TreeMind, the first multimodal, multi-task benchmark specifically designed for evaluating MLLMs in UAV-based forestry remote sensing, covering 12 task types across three spatial granularities.</li>
+            <li><strong>Unified Evaluation Framework:</strong> We establish a task-agnostic evaluation protocol that enables fine-grained assessment of MLLM capabilities in forestry scene understanding, from visual perception to spatial grounding and reasoning.</li>
+            <li><strong>Large-scale Evaluation:</strong> We conduct a systematic evaluation of 21 state-of-the-art MLLMs, providing the first comprehensive analysis of their strengths and limitations in complex forest environments.</li>
+            <li><strong>Diagnostic Resource:</strong> Beyond benchmarking, TreeMind serves as a diagnostic tool to guide the development of forestry-adapted multimodal models by identifying key challenges at the intersection of UAV remote sensing and MLLM learning.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        Website template borrowed from <a href="https://nerfies.github.io/">Nerfies</a>.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
