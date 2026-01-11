@@ -29,20 +29,20 @@
 
             <div class="is-size-5 publication-authors">
               <span class="author-block">Weichao Wu<sup>1</sup>,</span>
-              <span class="author-block">Xijian Fan<sup>1</sup>,</span>
+              <span class="author-block">Xijian Fan<sup>1,&dagger;</sup>,</span>
               <span class="author-block">Shichao Jin<sup>2</sup>,</span>
-              <span class="author-block">Weihao Bo<sup>3,*</sup>,</span>
-              <span class="author-block">Lin Cao<sup>1,&dagger;</sup></span>
+              <span class="author-block">Weihao Bo<sup>3</sup>,</span>
+              <span class="author-block">Lin Cao<sup>1</sup></span>
             </div>
 
             <div class="is-size-6 publication-authors affiliations">
               <span class="author-block"><sup>1</sup>Nanjing Forestry University</span>
-              <span class="author-block"><sup>2</sup>Beijing Forestry University</span>
+              <span class="author-block"><sup>2</sup>Nanjing Agriculture University</span>
               <span class="author-block"><sup>3</sup>Nanjing University of Science and Technology</span>
             </div>
 
             <div class="is-size-7 publication-authors" style="margin-top: 3px;">
-              <span class="author-block"><sup>*</sup>Project Leader &nbsp; <sup>&dagger;</sup>Corresponding Author</span>
+              <span class="author-block"><sup>&dagger;</sup>Corresponding Author</span>
             </div>
 
             <div class="column has-text-left" style="padding-left: 0;">
@@ -70,78 +70,11 @@
     </div>
   </section>
 
-
-<!-- Teaser Figure -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <figure class="image teaser-image">
-        <img src="./assets/images/treemind/pipeline.webp" alt="TreeMind Benchmark Overview">
-      </figure>
-      <h2 class="subtitle has-text-left">
-        <strong>Overview of TreeMind.</strong> (a) Visual tasks and sample images from the datasets used (including both public and private datasets); (b) Geographic locations of all datasets; (c) Percentage of different tasks; (d) Distribution of all task types.
-      </h2>
-    </div>
-  </div>
-</section>
-
-<!-- Stats Box -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="stats-box">
-      <div class="stat-item">
-        <span class="stat-number">27,719</span>
-        <span class="stat-label">UAV Images</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">36,521</span>
-        <span class="stat-label">VQA Pairs</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">12</span>
-        <span class="stat-label">Task Types</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">22</span>
-        <span class="stat-label">Datasets</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">21</span>
-        <span class="stat-label">MLLMs Evaluated</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Task Overview with Examples -->
-<section class="section">
+<!-- Abstract -->
+<section class="section" style="padding-bottom: 0;">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">12 Forestry Tasks Across 3 Spatial Granularities</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            TreeMind organizes 12 representative forestry tasks along a progressive visual cognition hierarchy spanning <strong>Image-level</strong>, <strong>Region-level</strong>, and <strong>Pixel-level</strong> spatial granularities. This design enables comprehensive evaluation of MLLMs from global semantic interpretation to instance-centric perception and pixel-accurate geometric delineation.
-          </p>
-        </div>
-
-        <figure class="image">
-          <img src="./assets/images/treemind/task2.webp" alt="TreeMind Task Taxonomy with Examples">
-          <figcaption class="has-text-centered is-size-7" style="margin-top: 0.5rem;">
-            Hierarchical task taxonomy with representative examples: Image-level tasks (T1-T7) for global semantics, Region-level tasks (T8-T10) for instance perception, and Pixel-level tasks (T11-T12) for geometric precision.
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Abstract -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
@@ -159,33 +92,59 @@
   </div>
 </section>
 
-<!-- Method Overview -->
+<!-- Benchmark Overview (Stats + Figure) -->
+<section class="hero teaser">
+  <div class="container is-max-desktop" style="border-top: none;">
+    <div class="hero-body" style="padding-top: 1rem;">
+      <!-- Stats Box -->
+      <div class="stats-box" style="margin-bottom: 1.5rem;">
+        <div class="stat-item">
+          <span class="stat-number">27,719</span>
+          <span class="stat-label">UAV Images</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">36,521</span>
+          <span class="stat-label">VQA Pairs</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">12</span>
+          <span class="stat-label">Task Types</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">22</span>
+          <span class="stat-label">Datasets</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">21</span>
+          <span class="stat-label">MLLMs Evaluated</span>
+        </div>
+      </div>
+      <!-- Figure -->
+      <figure class="image teaser-image">
+        <img src="./assets/images/treemind/dataset.webp" alt="TreeMind Benchmark Overview">
+      </figure>
+      <h2 class="subtitle has-text-left">
+        <strong>Overview of the TreeMind Benchmark.</strong> (a) Visual tasks and sample images from the datasets used, covering Classification, Object Detection, Counting & Localizing, Instance Segmentation, and Semantic Segmentation; (b) Geographic locations of all datasets across global biomes; (c) Percentage distribution of 12 different task types totaling 36,521 VQA pairs; (d) Hierarchical task distribution across Image-level, Region-level, and Pixel-level spatial granularities.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Contributions -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Benchmark Construction Pipeline</h2>
+        <h2 class="title is-3 has-text-centered">Contributions</h2>
 
         <div class="content has-text-justified">
-          <p>
-            <strong>TreeMind</strong> is developed as a comprehensive, multimodal, and multi-task benchmark for the systematic evaluation of MLLMs in UAV-based forestry monitoring. It supports a wide spectrum of forestry interpretation tasks, ranging from individual-tree analysis to forest stand-level understanding. The construction follows a structured four-stage pipeline:
-          </p>
-        </div>
-
-        <figure class="image">
-          <img src="./assets/images/treemind/pipeline.webp" alt="TreeMind Construction Pipeline">
-        </figure>
-
-        <div class="content has-text-justified method-details">
-          <h3 class="title is-4">Key Features</h3>
           <ul>
-            <li><strong>Diverse Data Sources:</strong> Aggregated from 18 publicly available datasets and 2 private forestry repositories, covering diverse forest types, geographic regions, and acquisition conditions.</li>
-            <li><strong>Hierarchical Task Taxonomy:</strong> Tasks organized across three spatial granularities (Image, Region, Pixel) to probe distinct facets of model capability.</li>
-            <li><strong>Prompt-Driven Evaluation:</strong> Hybrid instruction generation combining rule-based templates with LLM rewriting for semantic precision and linguistic diversity.</li>
-            <li><strong>Comprehensive MLLM Evaluation:</strong> 21 state-of-the-art models evaluated under a task-agnostic protocol without task-specific fine-tuning.</li>
+            <li><strong>Comprehensive Benchmark:</strong> We introduce TreeMind, the first multimodal, multi-task benchmark specifically designed for evaluating MLLMs in UAV-based forestry remote sensing, covering 12 task types across three spatial granularities.</li>
+            <li><strong>Unified Evaluation Framework:</strong> We establish a task-agnostic evaluation protocol that enables fine-grained assessment of MLLM capabilities in forestry scene understanding, from visual perception to spatial grounding and reasoning.</li>
+            <li><strong>Large-scale Evaluation:</strong> We conduct a systematic evaluation of 21 state-of-the-art MLLMs, providing the first comprehensive analysis of their strengths and limitations in complex forest environments.</li>
+            <li><strong>Diagnostic Resource:</strong> Beyond benchmarking, TreeMind serves as a diagnostic tool to guide the development of forestry-adapted multimodal models by identifying key challenges at the intersection of UAV remote sensing and MLLM learning.</li>
           </ul>
         </div>
-
       </div>
     </div>
   </div>
@@ -606,7 +565,7 @@
           </p>
         </div>
 
-        <figure class="image">
+        <figure class="image" style="max-width: 65%; margin: 0 auto;">
           <img src="./assets/images/treemind/sem_datasets.webp" alt="Pixel-level Task Visualization">
           <figcaption class="has-text-centered is-size-7" style="margin-top: 0.5rem;">
             (a-b) Instance segmentation results of <strong>Grounded-SAM</strong>: performs reasonably well when crowns are separated (a), but merges multiple crowns under heavy overlap (b).
@@ -656,6 +615,38 @@
             <li><strong>Domain Adaptation:</strong> Fine-tuning bridges the domain gap between general visual understanding and forestry-specific perception.</li>
           </ul>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benchmark Construction Pipeline -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Benchmark Construction Pipeline</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <strong>TreeMind</strong> is developed as a comprehensive, multimodal, and multi-task benchmark for the systematic evaluation of MLLMs in UAV-based forestry monitoring. It supports a wide spectrum of forestry interpretation tasks, ranging from individual-tree analysis to forest stand-level understanding. The construction follows a structured four-stage pipeline:
+          </p>
+        </div>
+
+        <figure class="image">
+          <img src="./assets/images/treemind/pipeline.webp" alt="TreeMind Construction Pipeline">
+        </figure>
+
+        <div class="content has-text-justified method-details">
+          <h3 class="title is-4">Key Features</h3>
+          <ul>
+            <li><strong>Diverse Data Sources:</strong> Aggregated from 18 public datasets and 4 private forestry repositories, covering diverse forest types, geographic regions, and acquisition conditions.</li>
+            <li><strong>Hierarchical Task Taxonomy:</strong> Tasks organized across three spatial granularities (Image, Region, Pixel) to probe distinct facets of model capability.</li>
+            <li><strong>Prompt-Driven Evaluation:</strong> Hybrid instruction generation combining rule-based templates with LLM rewriting for semantic precision and linguistic diversity.</li>
+            <li><strong>Comprehensive MLLM Evaluation:</strong> 21 state-of-the-art models evaluated under a task-agnostic protocol without task-specific fine-tuning.</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </div>
@@ -747,26 +738,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contributions -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Contributions</h2>
-
-        <div class="content has-text-justified">
-          <ul>
-            <li><strong>Comprehensive Benchmark:</strong> We introduce TreeMind, the first multimodal, multi-task benchmark specifically designed for evaluating MLLMs in UAV-based forestry remote sensing, covering 12 task types across three spatial granularities.</li>
-            <li><strong>Unified Evaluation Framework:</strong> We establish a task-agnostic evaluation protocol that enables fine-grained assessment of MLLM capabilities in forestry scene understanding, from visual perception to spatial grounding and reasoning.</li>
-            <li><strong>Large-scale Evaluation:</strong> We conduct a systematic evaluation of 21 state-of-the-art MLLMs, providing the first comprehensive analysis of their strengths and limitations in complex forest environments.</li>
-            <li><strong>Diagnostic Resource:</strong> Beyond benchmarking, TreeMind serves as a diagnostic tool to guide the development of forestry-adapted multimodal models by identifying key challenges at the intersection of UAV remote sensing and MLLM learning.</li>
-          </ul>
         </div>
       </div>
     </div>
